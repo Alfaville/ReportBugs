@@ -1,0 +1,106 @@
+@(op: Form[Operacao], id: Long, comentarios: List[Comentario]) @import helper._
+
+@if(op.hasErrors){
+<div class="alert alert-danger">
+	<a class="close" data-dismiss="alert" href="#">×</a>		
+		@op.errors.map { 
+			case (chave, valor) => {
+				@for(err <- valor){ 
+					@err.message.toString <br/> 
+				}
+			}
+		}		
+</div>
+}
+
+<div class="panel panel-info">
+	<div class="panel-body">
+		@helper.form(action = routes.OperacaoController.editar(id), 'id ->"formOp" ) {
+		<div class="form-group">
+			<div class="row">
+				<div class="col-sm-2">
+					<label class="control-label" for="codigo">@Messages("op.codigo")</label>
+					<input type="text" class="form-control" name="codigo" id="codigo"
+						value='@op.apply("codigo").value' />
+				</div>
+				<div class="col-sm-10">
+					<label class="control-label" for="descricao">@Messages("op.descricao")</label>
+					<input type="text" class="form-control" name="descricao"
+						id="descricao" value='@op.apply("descricao").value' />
+				</div>
+			</div>
+		</div>
+
+<!-- 		segunda linha		 -->
+			<div class="form-group">
+				<div class="row">
+					<div class="col-sm-5">
+						<label class="control-label" for="produto.descricao">@Messages("op.prod.descricao")</label>									                
+					<input list="prodList" class="form-control" value='@op.apply("produto.descricao").value'
+						name="produto.descricao" id="produto.descricao">
+					<datalist id="prodList">
+						@for(p <- Produto.find.findList()){
+						<option value="@p.descricao">@p.id</option>
+						}
+					</datalist>		                		                
+					</div>
+					<div class="col-sm-3">
+		                <label class="control-label" for="desenvolvedor.nome">@Messages("op.desv.nome")</label>
+						<input list="devList" class="form-control" value='@op.apply("desenvolvedor.nome").value'
+							name="desenvolvedor.nome" id="desenvolvedor.nome">
+						<datalist id="devList">
+							@for(d <- Desenvolvedor.find.findList()){
+							<option value="@d.nome">@d.id</option>
+							}
+						</datalist>			                														
+					</div>
+					<div class="col-sm-4">
+						<label class="control-label" for="status.descricao">@Messages("op.status")</label>
+						<input list="statusList" class="form-control" value='@op.apply("status.descricao").value'
+							name="status.descricao" id="status.descricao">
+						<datalist id="statusList">
+							@for(s <- StatusOp.find.findList()){
+							<option value="@s.descricao">@s.id</option>
+							}
+						</datalist>	             		                							
+					</div>					
+				</div>
+			</div>
+
+		<div class="form-group">
+			<div class="row">			
+				<div class="col-sm-12">
+					<label class="control-label">@Messages("op.observacoes")</label>
+					<textarea class="form-control" name="observacoes" rows="8"
+						id="observacoes">
+				         	@op.apply("observacoes").value
+				         </textarea>
+				</div>
+			</div>
+		</div>
+
+	@if(comentarios.isEmpty){
+	<div class="alert alert-warning">
+		@Messages("msg.observacao.vazio")
+	</div>
+	} else {	
+	  	@comentarios.map { comentario =>
+			<div class="panel panel-primary">
+				<div class="panel-heading">@Messages("comentarios") - @comentario.dataCriacao.format("dd/MM/yyyy HH:mm")</div>
+				<div class="panel-body">
+					@comentario.descricao	
+				</div>
+			</div>            
+	    }
+    }
+
+		<div style="float: right">
+			<a href="/home" class="btn btn-default">@Messages("button.voltar")</a>
+			<button type="submit" class="btn btn-info">@Messages("button.atualizar")</button>
+		</div>
+
+		}
+	</div>
+</div>
+
+@validacoes_js()

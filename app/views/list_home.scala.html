@@ -1,0 +1,45 @@
+@(operacoes: List[Operacao])
+
+<table id="operacoesTable" class="display" cellspacing="0" width="100%">
+	<thead>
+		<tr>
+			<th>@Messages("op.codigo")</th>
+			<th>@Messages("op.descricao")</th>
+			<th>@Messages("op.prod.descricao")</th>
+			<th>@Messages("op.desv.nome")</th>
+			<th>@Messages("op.status")</th>
+		</tr>
+	</thead>
+
+	<tbody>
+	@for(op <- operacoes){
+		<tr class="detalhamentoOp" data-id="@op.id">
+			<td>@op.codigo</td>
+			<td>@op.descricao</td>
+			<td>@op.produto.descricao</td>
+			<td>@op.desenvolvedor.nome</td>
+			<td>@op.status.descricao</td>
+		</tr>
+	}
+	</tbody>
+</table>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('#operacoesTable').DataTable({
+        "language": {
+            "url": " /assets/js/dataTables.pt.lang"
+        }
+    });
+
+    $(".detalhamentoOp").mouseover(function() {
+    	$(this).css("cursor","pointer");
+    });
+    
+	$(".detalhamentoOp").click(function(){
+		var id = $(this).attr("data-id");
+		$(location).attr('href',"operacao/" + id);
+	});
+	
+});
+</script>

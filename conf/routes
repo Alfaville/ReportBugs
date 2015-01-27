@@ -1,0 +1,39 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /home                           controllers.Application.index()
+
+# Operacao
+
+GET    /operacao/novo                   controllers.OperacaoController.novo()
+POST   /operacao/                       controllers.OperacaoController.gravar()
+GET    /operacao/:id                    controllers.OperacaoController.operacao(id: String)
+POST   /operacao/:id/edit               controllers.OperacaoController.editar(id: Long)
+GET    /assets/js/js_op                 controllers.OperacaoController.jsRoutes()
+
+# Desenvolvedor
+GET    /desenvolvedor/autocomplete/     controllers.DesenvolvedorController.autocompletar()
+GET    /desenvolvedor/                  controllers.DesenvolvedorController.index()
+POST   /desenvolvedor/                  controllers.DesenvolvedorController.gravar()
+DELETE /desenvolvedor/:id               controllers.DesenvolvedorController.deletar(id: Long)
+GET    /assets/js/js_dev                controllers.DesenvolvedorController.jsRoutes()
+
+#Status
+GET    /status/                         controllers.StatusController.index()
+POST   /status/                         controllers.StatusController.gravar()
+DELETE /status/:id                      controllers.StatusController.deletar(id: Long)
+GET    /status/autocomplete/            controllers.StatusController.autocompletarStatus()    
+GET    /assets/js/js_status             controllers.StatusController.jsRoutes()
+
+# Produto
+GET    /produto/                        controllers.ProdutoController.index()
+POST   /produto/                        controllers.ProdutoController.gravar()
+DELETE /produto/:id                     controllers.ProdutoController.deletar(id: Long)
+GET    /produto/autocomplete/           controllers.ProdutoController.autocompletarProduto()
+GET    /assets/js/js_produto            controllers.ProdutoController.jsRoutes()
+
+# Map static resources from the /public folder to the /assets URL path
+GET     /assets/*file               controllers.Assets.at(path="/public", file)
+GET     /webjars/*file              controllers.WebJarAssets.at(file)

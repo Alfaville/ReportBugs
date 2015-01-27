@@ -1,0 +1,73 @@
+index.title=Report de bugs/correções SNOA
+application_name=Reportede Bugs/Correções do SNOA
+user.profile=Perfil do usuário
+logout=Deslogar
+home_page=Página inicial
+table.filter=Filtro
+table.column.option=Opções
+msg.EmptyRecord=Nenhum registro
+
+#Outros
+consultar=Consultas
+novo=Cadastro
+
+#butões
+button.remove=Remover
+button.salvar=Salvar
+button.atualizar=Atualizar
+button.remover=Remover
+button.voltar=Voltar
+
+#Dialog
+dialog.remove.msg=Deseja remover este registro?
+dialog.remove.info=Remoção de registro
+dialog.close=x
+dialog.yes=Sim
+dialog.no=Não
+
+#Messagem
+msg.success=Operação efetuada com sucesso!
+msg.error.form.op=Operação não concluída, verifique se os campos foram preenchidos corretamente
+msg.nome.empty=Informe o campo nome
+msg.nome.length=Nome deve ser composto por no mínimo 3 caracteres
+msg.nome.invalido=Nome inválido
+msg.descricao.empty=Informe o campo descrição 
+msg.observacao.vazio=Nenhuma observação registrada
+
+cadastro_base=Cadastros
+desenvolvedor=Desenvolvedores
+status=Status
+status.add=Status Cadastrados
+operacoes=Operações
+produto=Produto
+
+
+#Operacao
+operacao=Operação
+op.operacao=Operação {0}
+operacao.app=Cadastro de operação
+op.codigo=Código
+op.descricao=Descrição
+op.prod.descricao=Produto
+op.desv.nome=Desenvolvedor/Corretor
+op.status=Status
+op.observacoes=Observações
+op.msg.observacao.required=Observação é obrigatório
+op.msg.descricao.required=Descrição é obrigatório
+op.msg.codigo.required=código é obrigatório
+
+#Desenvolvedor
+dev.lista=Lista de desenvolvedores
+devs=Desenvolvedores
+dev.nome=Nome
+dev.msg.nome.required=Nome do desenvolvedor é obrigatório
+
+#Status
+status.descricao=Descrição
+status.msg.descricao.required=Status é obrigatório
+
+#Produto
+prod.msg.descricao.required=Descrição do produto é obrigatório
+
+#Comentario
+comentarios=Comentário

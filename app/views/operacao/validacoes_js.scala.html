@@ -1,0 +1,117 @@
+@()
+
+<script src="@routes.DesenvolvedorController.jsRoutes()"
+	type="text/javascript"></script>
+<script src="@routes.ProdutoController.jsRoutes()"
+	type="text/javascript"></script>
+<script src="@routes.StatusController.jsRoutes()"
+	type="text/javascript"></script>		
+<script type="text/javascript">
+$(document).ready(function() {
+	
+	var list_dev = [];
+	var list_produto = [];
+	var list_status = [];
+
+	js_dev.controllers.DesenvolvedorController.autocompletar().ajax({
+		success: function(resultado){
+			$(resultado).each(function(index,dados){
+				list_dev[index] = { value: dados.nome, data: dados.id }					
+			});
+		}
+	});				 									
+
+	$("#autocompleteDev" ).autocomplete({	
+		lookup: list_dev,
+		minChars: 2	 
+	});	 
+
+	js_produto.controllers.ProdutoController.autocompletarProduto().ajax({
+		success: function(resultado){
+			$(resultado).each(function(index,dados){
+				list_produto[index] = { value: dados.descricao, data: dados.id }					
+			});
+		}
+	});				 									
+	
+	$("#autocompleteProduto" ).autocomplete({	
+		lookup: list_produto 
+	});	 
+
+	js_status.controllers.StatusController.autocompletarStatus().ajax({
+		success: function(resultado){
+			$(resultado).each(function(index,dados){
+				list_status[index] = { value: dados.descricao, data: dados.id }					
+			});
+		}
+	});				 									
+	
+	$("#autocompleteStatus" ).autocomplete({	
+		lookup: list_status	 
+	});	 
+
+	$('#formOp').bootstrapValidator({
+        feedbackIcons: {
+            valid: 'glyphicon glyphicon-ok',
+            invalid: 'glyphicon glyphicon-remove',
+            validating: 'glyphicon glyphicon-refresh'
+        },
+        fields: {
+        	codigo: {
+        		group: '.col-sm-2',
+                validators: {
+                    notEmpty: {
+                        message:'@Messages("op.msg.codigo.required")'
+                    },
+                    regexp : {
+    					regexp : /[^a-zA-z{,;.}]/,
+    					message : 'Formato do valor esta incorreto.'
+    				}                    
+                }                	               
+            },
+        	descricao: {
+        		group: '.col-sm-10',
+                validators: {
+                    notEmpty: {
+                        message: '@Messages("op.msg.descricao.required")'
+                    }
+                }
+            },             
+        	"produto.descricao": {
+        		group: '.col-sm-5',
+                validators: {
+                    notEmpty: {
+                        message: '@Messages("prod.msg.descricao.required")'
+                    }
+                }
+            }, 
+        	"desenvolvedor.nome": {
+        		group: '.col-sm-3',
+                validators: {
+                    notEmpty: {
+                        message: '@Messages("dev.msg.nome.required")'
+                    }
+                }
+            },     
+        	"status.descricao": {
+        		group: '.col-sm-4',
+                validators: {
+                    notEmpty: {
+                        message: '@Messages("status.msg.descricao.required")'
+                    }
+                }
+            },                 
+            observacoes: {
+            	group: '.col-sm-12',
+                validators: {
+                    notEmpty: {
+                        message: '@Messages("op.msg.observacao.required")'
+                    }
+                }
+            }            
+        }
+    }); 
+    
+	
+});
+</script>

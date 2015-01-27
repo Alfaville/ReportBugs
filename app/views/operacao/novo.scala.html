@@ -1,0 +1,87 @@
+@(formOperacao: Form[Operacao]) @import helper._
+
+@if(formOperacao.hasErrors){
+<div class="alert alert-danger">
+	<a class="close" data-dismiss="alert" href="#">×</a>
+	@formOperacao.errors.map { case (chave, valor) => { @for(err <- valor){
+	@err.message.toString <br /> } } }
+</div>
+}
+
+<div class="panel panel-info">
+	<div class="panel-body">
+		@form(action = routes.OperacaoController.gravar(), 'id -> "formOp" ) {
+		<div class="form-group">
+			<div class="row">
+				<div class="col-sm-2">
+					<label class="control-label" for="codigo">@Messages("op.codigo")</label>
+					<input type="text" class="form-control" name="codigo" id="codigo"
+						value='@formOperacao.field("codigo").value' />
+				</div>
+				<div class="col-sm-10">
+					<label class="control-label" for="descricao">@Messages("op.descricao")</label>
+					<input type="text" class="form-control" name="descricao"
+						id="descricao" value='@formOperacao.field("descricao").value' />
+				</div>
+			</div>
+		</div>
+
+		<!-- 		segunda linha		 -->
+		<div class="form-group">
+			<div class="row">
+				<div class="col-sm-5">
+					<label class="control-label" for="produto.descricao">@Messages("op.prod.descricao")</label>
+					<input list="prodList" class="form-control" value='@formOperacao.field("produto.descricao").value'
+						name="produto.descricao" id="produto.descricao" autocomplete="off">
+					<datalist id="prodList">
+						<option value="">Nenhum</option>
+						@for(p <- Produto.find.all()){
+						<option value="@p.descricao">@p.id</option>
+						}
+					</datalist>
+				</div>
+				<div class="col-sm-3">
+					<label class="control-label" for="desenvolvedor.nome">@Messages("op.desv.nome")</label>
+					<input list="devList" class="form-control" value='@formOperacao.field("desenvolvedor.nome").value'
+						name="desenvolvedor.nome" id="desenvolvedor.nome" autocomplete="off">
+					<datalist id="devList">
+						<option value="">Nenhum</option>
+						@for(p <- Desenvolvedor.find.all()){
+						<option value="@p.nome">@p.id</option>
+						}
+					</datalist>
+				</div>
+				<div class="col-sm-4">
+					<label class="control-label" for="status.descricao">@Messages("op.status")</label>
+					<input list="statusList" class="form-control" value='@formOperacao.field("status.descricao").value'
+						name="status.descricao" id="status.descricao" autocomplete="off">
+					<datalist id="statusList">
+						<option value="">Nenhum</option>
+						@for(p <- StatusOp.find.all()){
+						<option value="@p.descricao">@p.id</option>
+						}
+					</datalist>					
+					
+				</div>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="row">
+				<div class="col-sm-12">
+					<label class="control-label">@Messages("op.observacoes")</label>
+					<textarea class="form-control" name="observacoes" rows="8"
+						id="observacoes"></textarea>
+				</div>
+			</div>
+		</div>
+
+		<div style="float: right">
+			<button type="submit" class="btn btn-default">@Messages("button.salvar")</button>
+		</div>
+
+		}
+	</div>
+</div>
+
+@validacoes_js()

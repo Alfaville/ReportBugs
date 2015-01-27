@@ -1,0 +1,29 @@
+@(form: Form[StatusOp], list: List[StatusOp])
+
+<div class="row">
+	<div class="col-sm-12">
+
+		<div class="row">
+			<div class="col-md-12">
+
+				<div id="tabs">
+					<ul class="nav nav-tabs">
+						<li class="active"><a href="#listar" data-toggle="tab"> <i
+								class="glyphicon glyphicon-list-alt"></i>
+								@Messages("consultar")
+						</a></li>
+						<li><a href="#adicionar" data-toggle="tab"> <i
+								class="glyphicon glyphicon-list-alt"></i> @Messages("novo")
+						</a></li>
+					</ul>
+				</div>
+
+				<div class="tab-content">
+					<div class="tab-pane active" id="listar">@lista(list)</div>
+					<div class="tab-pane" id="adicionar">@novo(form)</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
