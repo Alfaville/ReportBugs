@@ -55,6 +55,7 @@ op.observacoes=Observações
 op.msg.observacao.required=Observação é obrigatório
 op.msg.descricao.required=Descrição é obrigatório
 op.msg.codigo.required=código é obrigatório
+op.msg.observacao.max=Limite de caractéres excedido. Total: 255
 
 #Desenvolvedor
 dev.lista=Lista de desenvolvedores

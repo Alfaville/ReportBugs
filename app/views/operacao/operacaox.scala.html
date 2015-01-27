@@ -78,28 +78,34 @@
 				</div>
 			</div>
 		</div>
-
-	@if(comentarios.isEmpty){
-	<div class="alert alert-warning">
-		@Messages("msg.observacao.vazio")
-	</div>
-	} else {	
-	  	@comentarios.map { comentario =>
-			<div class="panel panel-primary">
-				<div class="panel-heading">@Messages("comentarios") - @comentario.dataCriacao.format("dd/MM/yyyy HH:mm")</div>
-				<div class="panel-body">
-					@comentario.descricao	
+		
+		<div class="col-lg-12">
+				<div style="float: right">
+					<a href="@routes.Application.index()" class="btn btn-default">@Messages("button.voltar")</a>
+					<button type="submit" class="btn btn-info">@Messages("button.atualizar")</button>
 				</div>
-			</div>            
-	    }
-    }
-
-		<div style="float: right">
-			<a href="/home" class="btn btn-default">@Messages("button.voltar")</a>
-			<button type="submit" class="btn btn-info">@Messages("button.atualizar")</button>
+		</div>			
+		
+		@if(comentarios.isEmpty){
+		<div class="alert alert-warning">
+			@Messages("msg.observacao.vazio")
 		</div>
+		} else {	
+		  	@comentarios.map { comentario =>
+		  		<div class="col-xs-12">
+					<div class="panel panel-primary">
+						<div class="panel-heading">@Messages("comentarios") - @comentario.dataCriacao.format("dd/MM/yyyy HH:mm")</div>
+						<div class="panel-body">
+							<div class="well">
+							<p>@comentario.descricao</p>
+							</div>	
+						</div>
+					</div>
+				</div>            
+		    }	    
+	    }
 
-		}
+	}
 	</div>
 </div>
 

@@ -106,7 +106,11 @@ $(document).ready(function() {
                 validators: {
                     notEmpty: {
                         message: '@Messages("op.msg.observacao.required")'
-                    }
+                    },
+                    stringLength: {
+                        max: 255,
+                        message: '@Messages("op.msg.observacao.max")'
+                    },                    
                 }
             }            
         }
