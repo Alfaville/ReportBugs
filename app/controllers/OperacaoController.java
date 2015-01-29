@@ -12,10 +12,13 @@ import play.data.Form;
 import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
 import play.twirl.api.Html;
+import seguranca.PlaySeguranca;
 
 import com.avaje.ebean.Expr;
 
+@Security.Authenticated(PlaySeguranca.class)
 public class OperacaoController extends Controller {
 
 	private static final Form<Operacao> operacaoForm = Form

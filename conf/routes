@@ -4,6 +4,9 @@
 
 # Home page
 GET     /home                           controllers.Application.index()
+GET     /login                          controllers.LoginController.login()
+POST    /logar                          controllers.LoginController.logar()
+GET     /logout                         controllers.LoginController.logout()
 
 # Operacao
 

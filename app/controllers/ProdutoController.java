@@ -12,9 +12,12 @@ import play.i18n.Messages;
 import play.libs.Json;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
 import play.twirl.api.Html;
+import seguranca.PlaySeguranca;
 import views.html.index;
 
+@Security.Authenticated(PlaySeguranca.class)
 public class ProdutoController extends Controller {
 
 	private static final Form<Produto> produtoForm = Form.form(Produto.class);

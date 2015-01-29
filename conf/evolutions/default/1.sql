@@ -44,6 +44,15 @@ create table produto (
   constraint pk_produto primary key (id))
 ;
 
+create table projetos (
+  id                        bigint not null,
+  ativo                     boolean,
+  nome                      varchar(255),
+  data_criacao              timestamp not null,
+  data_atualizacao          timestamp not null,
+  constraint pk_projetos primary key (id))
+;
+
 create table status_op (
   id                        bigint not null,
   ativo                     boolean,
@@ -56,12 +65,20 @@ create table status_op (
 create table usuario (
   id                        bigint not null,
   ativo                     boolean,
+  login                     varchar(255),
   nome                      varchar(255),
+  senha                     varchar(255),
   data_criacao              timestamp not null,
   data_atualizacao          timestamp not null,
   constraint pk_usuario primary key (id))
 ;
 
+
+create table projetos_usuario (
+  projetos_id                    bigint not null,
+  usuario_id                     bigint not null,
+  constraint pk_projetos_usuario primary key (projetos_id, usuario_id))
+;
 create sequence comentario_seq;
 
 create sequence desenvolvedor_seq;
@@ -69,6 +86,8 @@ create sequence desenvolvedor_seq;
 create sequence operacao_seq;
 
 create sequence produto_seq;
+
+create sequence projetos_seq;
 
 create sequence status_op_seq;
 
@@ -85,6 +104,10 @@ create index ix_operacao_status_4 on operacao (status_id);
 
 
 
+alter table projetos_usuario add constraint fk_projetos_usuario_projetos_01 foreign key (projetos_id) references projetos (id);
+
+alter table projetos_usuario add constraint fk_projetos_usuario_usuario_02 foreign key (usuario_id) references usuario (id);
+
 # --- !Downs
 
 drop table if exists comentario cascade;
@@ -94,6 +117,10 @@ drop table if exists desenvolvedor cascade;
 drop table if exists operacao cascade;
 
 drop table if exists produto cascade;
+
+drop table if exists projetos cascade;
+
+drop table if exists projetos_usuario cascade;
 
 drop table if exists status_op cascade;
 
@@ -106,6 +133,8 @@ drop sequence if exists desenvolvedor_seq;
 drop sequence if exists operacao_seq;
 
 drop sequence if exists produto_seq;
+
+drop sequence if exists projetos_seq;
 
 drop sequence if exists status_op_seq;
 

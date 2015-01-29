@@ -1,5 +1,5 @@
-index.title=Report de bugs/correções SNOA
-application_name=Reportede Bugs/Correções do SNOA
+index.title=Report de bugs/correções
+application_name=Reporte de Bugs/Correções
 user.profile=Perfil do usuário
 logout=Deslogar
 home_page=Página inicial
@@ -17,6 +17,7 @@ button.salvar=Salvar
 button.atualizar=Atualizar
 button.remover=Remover
 button.voltar=Voltar
+button.entrar=Entrar
 
 #Dialog
 dialog.remove.msg=Deseja remover este registro?
@@ -41,6 +42,17 @@ status.add=Status Cadastrados
 operacoes=Operações
 produto=Produto
 
+#Login
+login=Login
+senha=Senha
+login.autenticacao=Autenticação
+login.msg.required=Campo login é obrigatório
+senha.msg.required=Campo senha é obrigatório
+loginView.incorreto=Usuário ou senha incorreto
+login.msg.sucesso=Deslogado com sucesso
+login.projeto=Projeto
+loginView.projeto.erro=Informe o projeto
+loginView.projeto.erro.inexistente=Projeto não vinculado com o usuário informado
 
 #Operacao
 operacao=Operação

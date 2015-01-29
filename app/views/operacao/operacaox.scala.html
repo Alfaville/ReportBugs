@@ -72,7 +72,7 @@
 				<div class="col-sm-12">
 					<label class="control-label">@Messages("op.observacoes")</label>
 					<textarea class="form-control" name="observacoes" rows="8"
-						id="observacoes">
+						id="observacoes" placeholder="Adicione uma observação">
 				         	@op.apply("observacoes").value
 				         </textarea>
 				</div>
@@ -97,7 +97,9 @@
 						<div class="panel-heading">@Messages("comentarios") - @comentario.dataCriacao.format("dd/MM/yyyy HH:mm")</div>
 						<div class="panel-body">
 							<div class="well">
-							<p>@comentario.descricao</p>
+								<pre>
+								@comentario.descricao
+								</pre>
 							</div>	
 						</div>
 					</div>

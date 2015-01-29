@@ -1,0 +1,81 @@
+@(form: Form[Usuario])
+
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">            
+        <meta name="author" content="Alfaville">
+            
+        <title>@Messages("application_name")</title>        
+        <link rel='stylesheet' href="@routes.WebJarAssets.at(WebJarAssets.locate("css/bootstrap.min.css"))">
+        <style>
+			.modal-footer {   border-top: 0px; }	        
+        </style>        
+    </head>
+    <body>  	 	
+    	
+		<div id="loginModal" class="modal show" tabindex="-1" role="dialog" aria-hidden="true">
+		  <div class="modal-dialog">
+		  <div class="modal-content">		  
+		      <div class="modal-header">
+		          <h1 class="text-center">@Messages("login.autenticacao")</h1>
+		      </div>		            		 		      		      
+		      <div class="modal-body">		            
+		          <form id="formLogin" action="@routes.LoginController.logar()" method="POST" class="form col-md-12 center-block">
+		            <div class="form-group">
+		              <input type="text" id="login" name="login" value='@form.apply("login").value' class="form-control input-lg" placeholder='@Messages("login")'>
+		            </div>
+		            <div class="form-group">
+		              <input type="password" id="senha" name="senha" value='@form.apply("senha").value' class="form-control input-lg" placeholder='@Messages("senha")'>
+		            </div>
+		            <div class="form-group">		            		                
+						<input list="prodList" class="form-control input-lg" placeholder='@Messages("login.projeto")'
+							name="projeto" id="projeto" autocomplete="off">
+						<datalist id="prodList">
+							<option value="">Nenhum</option>
+							@for(p <- Projetos.find.all()){
+							<option value="@p.nome">@p.id</option>
+							}
+						</datalist>												
+					</div>		            
+		            <div class="form-group">
+		              <button class="btn btn-primary btn-lg btn-block">@Messages("button.entrar")</button>
+		            </div>
+		          </form>
+		      </div>		      
+		      <div class="modal-footer">
+		      
+				@if(flash.containsKey("success")) {
+				<div class="alert alert-success msg">
+					<a class="close" data-dismiss="alert" href="#">×</a>
+					<div class="text-left">@flash.get("success")</div>
+				</div>
+				} @if(flash.containsKey("erro")) {
+				<div class="alert alert-danger">
+					<a class="close" data-dismiss="alert" href="#">×</a>
+					<div class="text-left">@flash.get("erro")</div>
+				</div>
+				}		      
+		      
+				@if(form.hasErrors){
+				<div class="alert alert-danger">
+					<a class="close" data-dismiss="alert" href="#">×</a>	
+						@form.errors.map { 
+							case (chave, valor) => {
+								@for(err <- valor){ 
+									<div class="text-left">@err.message.toString <br/></div> 
+								}
+							}
+						}		
+				</div>
+				}			      
+		      </div>
+		  </div>
+		  </div>
+		</div>    		
+		<script type='text/javascript' src="@routes.WebJarAssets.at(WebJarAssets.locate("jquery.min.js"))"></script>
+		<script type='text/javascript' src="@routes.WebJarAssets.at(WebJarAssets.locate("bootstrap.min.js"))"></script>           
+	</body>
+</html>		
