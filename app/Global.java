@@ -1,16 +1,12 @@
-import java.lang.reflect.Method;
 import java.util.List;
 
-import models.Projetos;
 import models.Usuario;
 import play.Application;
 import play.GlobalSettings;
 import play.api.mvc.RequestHeader;
 import play.libs.Crypto;
 import play.libs.F.Promise;
-import play.mvc.Action;
 import play.mvc.Http;
-import play.mvc.Http.Request;
 import play.mvc.Result;
 import play.mvc.Results;
 
@@ -37,23 +33,17 @@ public class Global extends GlobalSettings {
 			usuario.login = "admin";
 			usuario.nome = "Administrador";
 			usuario.senha = Crypto.sign("admin123");			
-			
-			Projetos p = new Projetos();
-			p.nome = "SNOA";
-			Projetos p2 = new Projetos();
-			p2.nome = "SOIA";			
-			Ebean.save(p);
-			Ebean.save(p2);
-			
-			usuario.projetos.add(p);
+//			
+//			Projetos p = new Projetos();
+//			p.nome = "SNOA";
+//			Projetos p2 = new Projetos();
+//			p2.nome = "SOIA";			
+//			Ebean.save(p);
+//			Ebean.save(p2);
+//			
+//			usuario.projetos.add(p);
 			Ebean.save(usuario);
 		}
-	}
-
-	@Override
-	public Action onRequest(Request request, Method actionMethod) {
-		System.out.println("before each request..." + request.toString());
-		return super.onRequest(request, actionMethod);
 	}
 
 }

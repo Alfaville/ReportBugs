@@ -1,0 +1,133 @@
+@(form: Form[Usuario])
+
+@if(form.hasErrors){
+<div class="alert alert-danger">
+	<a class="close" data-dismiss="alert" href="#">×</a>	
+		@form.errors.map { 
+			case (chave, valor) => {
+				@for(err <- valor){ 
+					<div class="text-left">@err.message.toString <br/></div> 
+				}
+			}
+		}		
+</div>
+}	
+
+<div class="panel panel-primary">
+	<div class="panel-heading">Dados do usuário</div>
+	<div class="panel-body">
+
+		<div class="row">
+			<div class="col-md-6 col-md-offset-2">
+				<form action='@routes.Application.gravar()' method="POST"
+					class="form-horizontal" role="form" id="perfilForm">
+					<fieldset>		
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="textinput">
+								Nome Usuário: </label>
+							<div class="col-sm-8">
+								<input type="text" placeholder="Nome do usuário..."
+									class="form-control" id="nome" name="nome"
+									value='@form.apply("nome").value()'>									
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="textinput">
+								Login: </label>
+							<div class="col-sm-8">
+								<input type="text" class="form-control" id="login" name="login"
+									value='@form.apply("login").value()' readonly>																
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="textinput">
+								Senha Atual: </label>
+							<div class="col-sm-8">
+								<input type="password" class="form-control"
+									placeholder="Senha atual" name="senha" id="senha">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="textinput">
+								Nova Senha: </label>
+							<div class="col-sm-8">
+								<input type="password" class="form-control" name='newPassword'
+									id="newPassword" placeholder="Nova senha">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<label class="col-sm-4 control-label" for="textinput">
+								Repetir Nova Senha: </label>
+							<div class="col-sm-8">
+								<input type="password" class="form-control"
+									name="repeatNewPassword" id="repeatNewPassword"
+									placeholder="Repita nova senha">
+							</div>
+						</div>
+
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<div class="pull-right">
+									<button type="button" onclick="location.href='/home'"
+										class="btn btn-default">Voltar</button>
+									<button type="submit" class="btn btn-primary">Salvar</button>
+								</div>
+							</div>
+						</div>
+
+					</fieldset>
+				</form>
+			</div>
+			<!-- /.col-lg-12 -->
+		</div>
+		<!-- /.row -->
+	</div>
+</div>
+
+<script>
+$(document).ready(function() {
+
+	  $('#perfilForm').bootstrapValidator({
+	        feedbackIcons: {
+	            valid: 'glyphicon glyphicon-ok',
+	            invalid: 'glyphicon glyphicon-remove',
+	            validating: 'glyphicon glyphicon-refresh'
+	        },
+	        fields: {
+	        	nome: {	                
+	                validators: {
+	                    notEmpty: {
+	                        message: 'Informe o nome do usuário'
+	                    }
+	                }
+	       		},			        
+	        	senha: {	                
+	                validators: {
+	                    notEmpty: {
+	                        message: 'Informe a senha'
+	                    }
+	                }
+	       		},		        
+	       		newPassword: {	                
+	                validators: {
+	                    notEmpty: {
+	                        message: 'Informe a nova senha'
+	                    }
+	                }
+	       		},	        
+	        	repeatNewPassword: {	                
+	                validators: {
+	                    notEmpty: {
+	                        message: 'Informe a nova senha novamente'
+	                    }
+	                }
+	       		}
+	        }
+	 	 });
+	 	 
+});
+</script>

@@ -4,6 +4,10 @@
 
 # Home page
 GET     /home                           controllers.Application.index()
+GET     /perfil/:id                     controllers.Application.perfil(id: Long)
+POST    /perfil/atualizar               controllers.Application.gravar()
+
+# Login
 GET     /login                          controllers.LoginController.login()
 POST    /logar                          controllers.LoginController.logar()
 GET     /logout                         controllers.LoginController.logout()

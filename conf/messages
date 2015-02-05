@@ -10,6 +10,7 @@ msg.EmptyRecord=Nenhum registro
 #Outros
 consultar=Consultas
 novo=Cadastro
+perfil=Perfil do usuário
 
 #butões
 button.remove=Remover

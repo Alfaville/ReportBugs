@@ -30,6 +30,8 @@
 		            <div class="form-group">
 		              <input type="password" id="senha" name="senha" value='@form.apply("senha").value' class="form-control input-lg" placeholder='@Messages("senha")'>
 		            </div>
+		            
+		            @**
 		            <div class="form-group">		            		                
 						<input list="prodList" class="form-control input-lg" placeholder='@Messages("login.projeto")'
 							name="projeto" id="projeto" autocomplete="off" value='@form.apply("projeto").value'>
@@ -39,7 +41,9 @@
 							<option value="@p.nome">@p.id</option>
 							}
 						</datalist>												
-					</div>		            
+					</div>		
+					**@
+					            
 		            <div class="form-group">
 		              <button class="btn btn-primary btn-lg btn-block">@Messages("button.entrar")</button>
 		            </div>
